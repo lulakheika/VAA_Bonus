@@ -104,14 +104,20 @@ The parser generates **identical** output to the SpecStory Cursor extension, all
 
 All conversations end up in `.specstory/history/` with identical markdown structure.
 
-### Shell Integration
-The status line can be integrated into your shell prompt for real-time monitoring:
+### Claude Code Integration
+The status line integrates directly with Claude Code through the settings configuration:
 
-```bash
-# Add to your .zshrc or .bashrc
-export CLAUDE_STATUS=$(python /path/to/main_status_line.py)
-PS1="$PS1 $CLAUDE_STATUS"
+```json
+{
+  "statusLine": {
+    "type": "command",
+    "command": "python /path/to/Bonus_Code/Status_Line/main_status_line.py",
+    "padding": 0
+  }
+}
 ```
+
+Add this configuration to your `.claude/settings.json` file, or use the `/statusline` command in Claude Code for interactive setup.
 
 ## 🎯 Use Cases
 
