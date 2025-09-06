@@ -105,19 +105,53 @@ The parser generates **identical** output to the SpecStory Cursor extension, all
 All conversations end up in `.specstory/history/` with identical markdown structure.
 
 ### Claude Code Integration
-The status line integrates directly with Claude Code through the settings configuration:
+The status line integrates directly with Claude Code through the settings configuration.
 
+**Step 1: Place the Status Line Script**
+
+First, copy the status line script to your Claude Code directory:
+
+**macOS/Linux:**
+```bash
+mkdir -p ~/.claude/status_lines
+cp Bonus_Code/Status_Line/main_status_line.py ~/.claude/status_lines/
+```
+
+**Windows:**
+```cmd
+mkdir "%USERPROFILE%\.claude\status_lines"
+copy "Bonus_Code\Status_Line\main_status_line.py" "%USERPROFILE%\.claude\status_lines\"
+```
+
+**Step 2: Configure Claude Code**
+
+Add this configuration to your `~/.claude/settings.json` file:
+
+**Option 1: Using UV (Recommended - Faster)**
 ```json
 {
   "statusLine": {
     "type": "command",
-    "command": "python /path/to/Bonus_Code/Status_Line/main_status_line.py",
+    "command": "uv run ~/.claude/status_lines/main_status_line.py",
     "padding": 0
   }
 }
 ```
 
-Add this configuration to your `.claude/settings.json` file, or use the `/statusline` command in Claude Code for interactive setup.
+**Option 2: Using Standard Python**  
+```json
+{
+  "statusLine": {
+    "type": "command",
+    "command": "python ~/.claude/status_lines/main_status_line.py",
+    "padding": 0
+  }
+}
+```
+
+Alternatively, use the `/statusline` command in Claude Code for interactive setup.
+
+> **Note**: UV is a modern Python package manager that's significantly faster than standard Python execution. If you have UV installed, use Option 1. Otherwise, Option 2 works perfectly fine.
 
 ## 🎯 Use Cases
 
